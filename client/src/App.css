@@ -1,0 +1,19 @@
+.App {
+  display: inline-block;
+}
+
+.error {
+  font-size: 10px;
+  color: red;
+  margin: 0;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid blue;
+  border-radius: 15px;
+  padding: 10px;
+  width: 400px;
+  margin: 0 auto;
+}
