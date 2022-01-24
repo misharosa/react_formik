@@ -13,6 +13,9 @@ export const App = () => {
         confirmEmail: yup.string().email('Enter the correct email').oneOf([yup.ref('email')], 'do not match email').required('Обов\'язкове поле'),
     })
 
+    const [data, setData] = useState([])
+    console.log(data)
+
   return (
       <div className="form-container">
         <Formik
@@ -25,10 +28,12 @@ export const App = () => {
                 confirmEmail: ''
             }}
             validateOnBlur
-            onSubmit={(values) => { console.log(values) }}
+            onSubmit={(values) => {
+                console.log(values)
+            }}
             validationSchema={validationsSchema}
         >
-            {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+            {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty, resetForm }) => (
                 <div className="App">
                     <h1>Registration</h1>
                     <p>
@@ -123,7 +128,11 @@ export const App = () => {
                     </p>
                     <button
                     disabled={!isValid && !dirty}
-                    onClick={handleSubmit}
+                    onClick={(values) => {
+                        handleSubmit()
+                        setData(prev => [...prev, values])
+                        resetForm()
+                    }}
                     type={`submit`}
                     >
                         Send
